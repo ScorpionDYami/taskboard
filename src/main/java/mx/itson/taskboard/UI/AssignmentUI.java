@@ -4,18 +4,25 @@
  */
 package mx.itson.taskboard.UI;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.taskboard.entities.Assignment;
+import mx.itson.taskboard.persistence.AssignmentDAO;
+
+
 
 /**
  *
  * @author PROPIETARIO
  */
-public class Assignment extends javax.swing.JFrame {
+public class AssignmentUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Assignment
      */
-    public Assignment() {
+    public AssignmentUI() {
         initComponents();
+        loadAssignments();
     }
 
     /**
@@ -152,7 +159,22 @@ public class Assignment extends javax.swing.JFrame {
         form.setVisible(true);
         
     }//GEN-LAST:event_btnAddActionPerformed
+    
+    private void loadAssignments() {
+    List<Assignment> assignments = AssignmentDAO.getAll();
+    DefaultTableModel model = (DefaultTableModel) tblAssignment.getModel();
+    model.setRowCount(0); // Limpia la tabla antes de agregar los datos
 
+    for (Assignment a : assignments) {
+        model.addRow(new Object[]{
+            a.getId(),
+            a.getTitle(),
+            a.getDescription(),
+            a.getDueDate()
+        });
+    }
+}
+    
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         AssignmentForm form = new AssignmentForm(this, true);
         form.setVisible(true);
@@ -186,24 +208,25 @@ public class Assignment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AssignmentUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AssignmentUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AssignmentUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AssignmentUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Assignment().setVisible(true);
+                new AssignmentUI().setVisible(true);
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;

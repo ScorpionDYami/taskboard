@@ -4,6 +4,11 @@
  */
 package mx.itson.taskboard.UI;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.taskboard.entities.Student;
+import mx.itson.taskboard.persistence.StudentDAO;
+
 /**
  *
  * @author PROPIETARIO
@@ -15,6 +20,8 @@ public class StudentsList extends javax.swing.JFrame {
      */
     public StudentsList() {
         initComponents();
+        loadStudents();
+
     }
 
     /**
@@ -45,7 +52,7 @@ public class StudentsList extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "ID", "Name", "Email"
+                "id", "ID", "Name", "Email"
             }
         ));
         jScrollPane1.setViewportView(tblStudentsList);
@@ -147,7 +154,25 @@ public class StudentsList extends javax.swing.JFrame {
         AssignmentList form = new AssignmentList();
         form.setVisible(true);
     }//GEN-LAST:event_btnAssignmentListActionPerformed
+   
+    private void loadStudentData() { 
+    List<Student> students = StudentDAO.GetAll();
 
+    DefaultTableModel model = (DefaultTableModel) tblStudentsList.getModel();
+    model.setRowCount(0); // Limpiar la tabla
+
+    for (Student student : students) {
+        Object[] row = {
+            student.getId(),
+            student.getName(),
+            student.getEmail(),
+            student.getIdColt()
+        };
+        model.addRow(row);
+    }
+}
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -193,4 +218,8 @@ public class StudentsList extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblStudentsList;
     // End of variables declaration//GEN-END:variables
+
+    private void loadStudents() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -18,18 +18,18 @@ import org.hibernate.Session;
 public class AssignmentDAO {
     
     public static List<Assignment> getAll() {
-        List<Assignment> assigments = new ArrayList<>();
+        List<Assignment> assignments = new ArrayList<>();
         try{
             Session session = HibernateUtil.getSessionFactory().openSession();
             CriteriaQuery<Assignment> criteriaQuery =
                     session.getCriteriaBuilder().createQuery(Assignment.class);
             criteriaQuery.from(Assignment.class);
             
-            assigments = session.createQuery(criteriaQuery).getResultList();
+            assignments = session.createQuery(criteriaQuery).getResultList();
         }catch(Exception ex){
             System.out.println("An error ocurred: " + ex.getMessage());
         }
-        return assigments;
+        return assignments;
     }
     
     public static boolean Save(Assignment a){

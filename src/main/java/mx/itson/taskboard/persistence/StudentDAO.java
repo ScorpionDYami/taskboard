@@ -93,4 +93,8 @@ public class StudentDAO {
         }
         return student;
     }
+
+    public static List<Student> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
