@@ -5,10 +5,14 @@
 package mx.itson.taskboard.entities;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,7 +26,24 @@ public class Assignment {
     private int id;
     private String title;
     private String description;
-    private Time due_date;
+    private Time dueDate;
+    
+    @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Work> submissions = new ArrayList<>();
+
+    /**
+     * @return the submissions
+     */
+    public List<Work> getSubmissions() {
+        return submissions;
+    }
+
+    /**
+     * @param submissions the submissions to set
+     */
+    public void setSubmissions(List<Work> submissions) {
+        this.submissions = submissions;
+    }
 
     /**
      * @return the id
@@ -67,16 +88,16 @@ public class Assignment {
     }
 
     /**
-     * @return the due_date
+     * @return the dueDate
      */
-    public Time getDue_date() {
-        return due_date;
+    public Time getDueDate() {
+        return dueDate;
     }
 
     /**
-     * @param due_date the due_date to set
+     * @param dueDate the dueDate to set
      */
-    public void setDue_date(Time due_date) {
-        this.due_date = due_date;
+    public void setDueDate(Time dueDate) {
+        this.dueDate = dueDate;
     }
 }
