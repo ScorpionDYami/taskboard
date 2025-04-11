@@ -83,4 +83,14 @@ public class StudentDAO {
         return result;
     }
     
+    public static Student getById(int id) {
+        Student student = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            student = session.get(Student.class, id);
+        } catch(Exception ex) {
+            System.err.println("An error occurred" + ex.getMessage());
+        }
+        return student;
+    }
 }
