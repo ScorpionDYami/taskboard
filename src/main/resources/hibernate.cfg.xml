@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration">
+
+
+<hibernate-configuration>
+    <session-factory>
+        <property name = "hibernate.dialect"> 
+            org.hibernate.dialect.MySQL8Dialect
+        </property>
+        <property name = "hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+        <property name = "hibernate.connection.url">
+            jdbc:mysql://72.29.120.28/siste214_244656?useSSL=false
+        </property>
+        <property name = "hibernate.connection.username">
+            siste214_244656
+        </property>
+        <property name = "hibernate.connection.password">
+            244656ITSON@guaymas
+        </property>
+        
+        <mapping class = "mx.itson.taskboard.entities.Assignment"/>
+        <mapping class = "mx.itson.taskboard.entities.Student"/>
+        <mapping class = "mx.itson.taskboard.entities.Work"/>
+    </session-factory>
+</hibernate-configuration>
