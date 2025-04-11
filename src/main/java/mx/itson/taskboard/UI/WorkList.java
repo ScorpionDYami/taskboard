@@ -4,6 +4,9 @@
  */
 package mx.itson.taskboard.UI;
 
+import java.util.List;
+import mx.itson.taskboard.entities.Work;
+
 /**
  *
  * @author PROPIETARIO
@@ -15,6 +18,7 @@ public class WorkList extends javax.swing.JFrame {
      */
     public WorkList() {
         initComponents();
+
     }
 
     /**
@@ -135,6 +139,9 @@ public class WorkList extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
