@@ -25,7 +25,7 @@ public class Student {
     private int id;
     private String name;
     private String email;
-    private int idColt;
+    private int id_colt;
     
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Work> works = new ArrayList<>();
@@ -48,14 +48,14 @@ public class Student {
      * @return the idColt
      */
     public int getIdColt() {
-        return idColt;
+        return id_colt;
     }
 
     /**
-     * @param idColt the idColt to set
+     * @param id_colt the idColt to set
      */
-    public void setIdColt(int idColt) {
-        this.idColt = idColt;
+    public void setIdColt(int id_colt) {
+        this.id_colt = id_colt;
     }
     
     /**

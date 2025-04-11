@@ -43,6 +43,11 @@ public class StudentsList extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblStudentsList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,6 +159,11 @@ public class StudentsList extends javax.swing.JFrame {
         AssignmentList form = new AssignmentList();
         form.setVisible(true);
     }//GEN-LAST:event_btnAssignmentListActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        loadStudentData();
+        tblStudentsList.removeColumn(tblStudentsList.getColumnModel().getColumn(0));
+    }//GEN-LAST:event_formWindowOpened
    
     private void loadStudentData() { 
     List<Student> students = StudentDAO.GetAll();

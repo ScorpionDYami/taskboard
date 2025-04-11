@@ -24,14 +24,14 @@ public class Work {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Time date;
-    private String fileName;
+    private String file_name;
     
     @ManyToOne
     @JoinColumn(name = "id_student")
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "id_assigment")
+    @JoinColumn(name = "id_assignment")
     private Assignment assignment;
 
     /**
@@ -94,13 +94,13 @@ public class Work {
      * @return the fileName
      */
     public String getFileName() {
-        return fileName;
+        return file_name;
     }
 
     /**
      * @param file_name the fileName to set
      */
     public void setFileName(String file_name) {
-        this.fileName = fileName;
+        this.file_name = file_name;
     }
 }

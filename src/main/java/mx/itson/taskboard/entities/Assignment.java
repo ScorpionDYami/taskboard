@@ -4,6 +4,7 @@
  */
 package mx.itson.taskboard.entities;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Assignment {
     private int id;
     private String title;
     private String description;
-    private Time dueDate;
+    private Date due_date;
     
     @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Work> submissions = new ArrayList<>();
@@ -90,14 +91,14 @@ public class Assignment {
     /**
      * @return the dueDate
      */
-    public Time getDueDate() {
-        return dueDate;
+    public Date getDueDate() {
+        return due_date;
     }
 
     /**
-     * @param dueDate the dueDate to set
+     * @param due_date the dueDate to set
      */
-    public void setDueDate(Time dueDate) {
-        this.dueDate = dueDate;
+    public void setDueDate(Date due_date) {
+        this.due_date = due_date;
     }
 }
