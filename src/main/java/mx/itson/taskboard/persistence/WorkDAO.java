@@ -3,11 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package mx.itson.taskboard.persistence;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
-import mx.itson.taskboard.entities.Student;
+import mx.itson.taskboard.entities.Work;
 import mx.itson.taskboard.utils.HibernateUtil;
 import org.hibernate.Session;
 
@@ -15,15 +14,15 @@ import org.hibernate.Session;
  *
  * @author Ivan Arce
  */
-public class StudentDAO {
+public class WorkDAO {
     
-    public static List <Student> GetAll(){
-        List <Student> student = new ArrayList<>();
+    public static List <Work> GetAll(){
+        List <Work> student = new ArrayList<>();
         try{
             
             Session session = HibernateUtil.getSessionFactory().openSession();
-            CriteriaQuery<Student> criteriaQuerry = session.getCriteriaBuilder().createQuery(Student.class);
-            criteriaQuerry.from(Student.class);
+            CriteriaQuery<Work> criteriaQuerry = session.getCriteriaBuilder().createQuery(Work.class);
+            criteriaQuerry.from(Work.class);
             
             student = session.createQuery(criteriaQuerry).getResultList();
         }catch(Exception ex){
@@ -32,65 +31,65 @@ public class StudentDAO {
         return student;
     }
     
-    public static boolean save(Student s){
-        boolean result = false;
-        try{
-            
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            
-            session.save(s);
-            session.beginTransaction().commit();
-            
-            result = s.getId() != 0;
-        }catch(Exception ex){
-            System.err.println("An error occurred" + ex.getMessage());
-        }
-        return result;
-    }
-    
-    public static boolean edit(Student s){
-        boolean result = false;
-        try{
-            
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            
-            session.update(s);
-            session.beginTransaction().commit();
-            
-            result = s.getId() != 0;
-        }catch(Exception ex){
-            System.err.println("An error occurred" + ex.getMessage());
-        }
-        return result;
-    }
-    
-    public static boolean delete(Student s){
-        boolean result = false;
-        try{
-            
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            
-            session.delete(s);
-            session.beginTransaction().commit();
-            
-            result = s.getId() != 0;
-        }catch(Exception ex){
-            System.err.println("An error occurred" + ex.getMessage());
-        }
-        return result;
-    }
-    
-    public static Student getById(int id) {
-        Student student = null;
+    public static Work getById(int id) {
+        Work work = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            student = session.get(Student.class, id);
+            work = session.get(Work.class, id);
         } catch(Exception ex) {
             System.err.println("An error occurred" + ex.getMessage());
         }
-        return student;
+        return work;
+    }
+    
+    public static boolean save(Work w){
+        boolean result = false;
+        try{
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            session.save(w);
+            session.beginTransaction().commit();
+            
+            result = w.getId() != 0;
+        }catch(Exception ex){
+            System.err.println("An error occurred" + ex.getMessage());
+        }
+        return result;
+    }
+    
+    public static boolean edit(Work w){
+        boolean result = false;
+        try{
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            session.update(w);
+            session.beginTransaction().commit();
+            
+            result = w.getId() != 0;
+        }catch(Exception ex){
+            System.err.println("An error occurred" + ex.getMessage());
+        }
+        return result;
+    }
+    
+    public static boolean delete(Work w){
+        boolean result = false;
+        try{
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            session.delete(w);
+            session.beginTransaction().commit();
+            
+            result = w.getId() != 0;
+        }catch(Exception ex){
+            System.err.println("An error occurred" + ex.getMessage());
+        }
+        return result;
     }
 }
