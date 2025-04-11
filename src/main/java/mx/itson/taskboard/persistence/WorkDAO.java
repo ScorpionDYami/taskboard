@@ -16,6 +16,15 @@ import org.hibernate.Session;
  */
 public class WorkDAO {
     
+    /**
+    * Retrieves all Work entities from the database.
+    * <p>
+    * This method opens a Hibernate session and creates a CriteriaQuery to fetch all Work objects.
+    * The query is executed to obtain the result list which is then returned.
+    * If an exception occurs, an error message is printed and an empty list is returned.
+    * </p>
+    * @return a List containing all Work entities, or an empty list if an error occurs
+    */
     public static List <Work> GetAll(){
         List <Work> student = new ArrayList<>();
         try{
@@ -31,6 +40,18 @@ public class WorkDAO {
         return student;
     }
     
+    /**
+    * Retrieves a Work entity from the database using its ID.
+    * <p>
+    * This method opens a Hibernate session and uses the {@code session.get()} method
+    * to fetch the Work object corresponding to the provided ID. If the Work is not found,
+    * {@code session.get()} returns {@code null}. Any exceptions encountered during the process
+    * are caught, and an error message is printed to the error stream.
+    * </p>
+    *
+    * @param id the ID of the Work to retrieve
+    * @return the Work object with the specified ID, or {@code null} if not found or an error occurs
+    */
     public static Work getById(int id) {
         Work work = null;
         try {
@@ -42,6 +63,17 @@ public class WorkDAO {
         return work;
     }
     
+    /**
+    * Saves the specified Work entity to the database.
+    * <p>
+    * This method opens a Hibernate session and begins a transaction.
+    * It then saves the provided Work object and commits the transaction.
+    * After committing, it checks if the Work's ID is non-zero to confirm that the save operation was successful.
+    * If an exception occurs during the process, an error message is printed and the method returns false.
+    * </p>
+    * @param w the Work entity to save
+    * @return true if the Work was saved successfully (its ID is non-zero); false otherwise
+    */
     public static boolean save(Work w){
         boolean result = false;
         try{
@@ -59,6 +91,17 @@ public class WorkDAO {
         return result;
     }
     
+    /**
+    * Updates the specified Work entity in the database.
+    * <p>
+    * This method opens a Hibernate session and begins a transaction.
+    * It then updates the provided Work object and commits the transaction.
+    * After committing, it checks if the Work's ID is non-zero to confirm that the update operation was successful.
+    * If an exception occurs during the process, an error message is printed and the method returns false.
+    * </p>
+    * @param w the Work entity to update
+    * @return true if the Work was updated successfully (its ID is non-zero); false otherwise
+    */
     public static boolean edit(Work w){
         boolean result = false;
         try{
@@ -76,6 +119,17 @@ public class WorkDAO {
         return result;
     }
     
+    /**
+    * Deletes the specified Work entity from the database.
+    * <p>
+    * This method opens a Hibernate session and begins a transaction.
+    * It then deletes the provided Work object and commits the transaction.
+    * After committing, it checks if the Work's ID is non-zero to confirm that the delete operation was successful.
+    * If an exception occurs during the process, an error message is printed and the method returns false.
+    * </p>
+    * @param w the Work entity to delete
+    * @return true if the Work was deleted successfully (its ID is non-zero); false otherwise
+    */
     public static boolean delete(Work w){
         boolean result = false;
         try{
