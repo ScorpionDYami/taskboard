@@ -27,7 +27,7 @@ public class StudentDAO {
             
             student = session.createQuery(criteriaQuerry).getResultList();
         }catch(Exception ex){
-            System.err.println("Ocurrio un error" + ex.getMessage());
+            System.err.println("An error occurred" + ex.getMessage());
         }
         return student;
     }
@@ -39,8 +39,46 @@ public class StudentDAO {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             
+            session.save(s);
+            session.beginTransaction().commit();
+            
+            result = s.getId() != 0;
         }catch(Exception ex){
-            System.err.println("Ocurrio un error" + ex.getMessage());
+            System.err.println("An error occurred" + ex.getMessage());
+        }
+        return result;
+    }
+    
+    public static boolean edit(Student s){
+        boolean result = false;
+        try{
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            session.update(s);
+            session.beginTransaction().commit();
+            
+            result = s.getId() != 0;
+        }catch(Exception ex){
+            System.err.println("An error occurred" + ex.getMessage());
+        }
+        return result;
+    }
+    
+    public static boolean delete(Student s){
+        boolean result = false;
+        try{
+            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            session.delete(s);
+            session.beginTransaction().commit();
+            
+            result = s.getId() != 0;
+        }catch(Exception ex){
+            System.err.println("An error occurred" + ex.getMessage());
         }
         return result;
     }
