@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,12 +19,48 @@ import javax.persistence.Id;
 
 @Entity
 public class Work {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Time date;
-    private String file_name;
+    private String fileName;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_assigment")
+    private Assignment assignment;
+
+    /**
+     * @return the assignment
+     */
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    /**
+     * @param assignment the assignment to set
+     */
+    public void setAssignment(Assignment assignment) {
+        this.assignment = assignment;
+    }
+
+    /**
+     * @return the student
+     */
+    public Student getStudent() {
+        return student;
+    }
+
+    /**
+     * @param student the student to set
+     */
+    public void setStudent(Student student) {
+        this.student = student;
+    }
     
     /**
      * @return the id
@@ -53,16 +91,16 @@ public class Work {
     }
 
     /**
-     * @return the file_name
+     * @return the fileName
      */
-    public String getFile_name() {
-        return file_name;
+    public String getFileName() {
+        return fileName;
     }
 
     /**
-     * @param file_name the file_name to set
+     * @param file_name the fileName to set
      */
-    public void setFile_name(String file_name) {
-        this.file_name = file_name;
+    public void setFileName(String file_name) {
+        this.fileName = fileName;
     }
 }
